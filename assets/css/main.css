@@ -1,0 +1,271 @@
+
+/**
+ * Gutenberg Manager Main Style.
+ * @since 1.0
+ */
+
+/* GLOBALS */
+.gm-clearfix {
+    clear: both;
+}
+
+/* CONTENT/SIDEBAR SYSTEM */
+
+.gm-content-sidebar-wrap {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.gm-content {
+    width: 100%;
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+
+.gm-sidebar {
+    width: 260px;
+    padding-left: 20px;
+    display: table-cell;
+    margin: 0;
+    vertical-align: top;
+}
+
+.gm-sidebar-spot {
+    margin-bottom: 40px;
+}
+
+.gm-sidebar-spot h2 {
+    color: #019875;
+    padding-bottom: 9px;
+    border-bottom: solid 1px #ccc;
+}
+
+.gm-sidebar-spot p {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.gm-sidebar-spot img {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+/* OPTIONS */
+
+.gm-content .dashicons,
+.gm-content .dashicons-before::before {
+    line-height: 1.3;
+}
+
+.gm-container {
+    position: relative;
+    max-width: 100%;
+    margin: 20px 0 1px;
+    padding: 20px 20px 0;
+    border: 1px solid #e5e5e5;
+    background-color: #fdfdfd;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.gm-container h3 {
+    margin: -20px -20px 0;
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+    background-color: #fdfdfd;
+}
+
+.gm-container .dashicons,
+.gm-container .dashicons-before::before {
+    line-height: 1;
+}
+
+.gm-image {
+    max-width: 100%;
+    margin: 10px 0;
+}
+
+.gm-more-image {
+    width: 400px;
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+.gm-more-title {
+    font-size: 30px;
+    margin-top: 40px;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.gm-more-text .button-secondary img {
+    margin-top: 4px;
+}
+
+.gm-container pre {
+    overflow: hidden;
+}
+
+
+/* GRID SYSTEM */
+
+.gm-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.gm-col-1, .gm-col-2, .gm-col-3, .gm-col-4, .gm-col-5, .gm-col-6, .gm-col-7, .gm-col-8, .gm-col-9, .gm-col-10, .gm-col-11, .gm-col-12 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+}
+
+.gm-col-1 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+}
+
+.gm-col-2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+}
+
+.gm-col-3 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.gm-col-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.gm-col-5 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+}
+
+.gm-col-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.gm-col-7 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+}
+
+.gm-col-8 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.gm-col-9 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.gm-col-10 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+}
+
+.gm-col-11 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 91.666667%;
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%;
+}
+
+.gm-col-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 1400px) {
+
+    .gm-more-title {
+        font-size: 24px;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    .gm-more-title {
+        font-size: 20px;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+    .gm-more-image {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .gm-more-title {
+        font-size: 24px;
+    }
+
+}
+
+@media screen and (max-width: 960px) {
+
+    .gm-col-1, .gm-col-2, .gm-col-3, .gm-col-4, .gm-col-5, .gm-col-6, .gm-col-7, .gm-col-8, .gm-col-9, .gm-col-10, .gm-col-11, .gm-col-12 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .gm-content-sidebar-wrap,
+    .gm-content,
+    .gm-sidebar {
+        display: inherit;
+        width: 100%;
+        padding: 0;
+    }
+
+}
+
+
+@media screen and (max-width: 400px) {
+
+    .gm-more-title {
+        font-size: 20px;
+    }
+
+}
+
