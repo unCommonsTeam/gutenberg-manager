@@ -42,7 +42,7 @@ Here you can globally disable Gutenberg Editor or manage the visibility of edito
 
 Here you can disable the default blocks in the Editor.
 
-![Gutenberg Manager Panel](http://uncommons.pro/github/gutenberg-manager-media/Gutenberg_Manager_Default_Blocks.png)
+![Gutenberg Manager Default Blocks](http://uncommons.pro/github/gutenberg-manager-media/Gutenberg_Manager_Default_Blocks.png)
 
 ## Additional Blocks
 
@@ -54,6 +54,8 @@ Here you can enable our additional blocks in the Editor.
 
 Here you find a list of Hooks to use in your custom Theme/Plugin!
 > Note: there is an action to disable the Option Panel of Gutenberg Manager so our plugin will be hidden for the final user but the theme/plugin developer can use all the plugin's features.
+
+![Gutenberg Manager Hooks](http://uncommons.pro/github/gutenberg-manager-media/Gutenberg_Manager_Hooks.png)
 
 ## How You Can Contribute
 
