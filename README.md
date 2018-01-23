@@ -8,7 +8,7 @@ Gutenberg Editor will be probably included in the next great release of WordPres
 
 If you are developing or editing a theme/plugin all features are also available via Hooks so you can include Gutenberg Manager plugin inside your theme and use it without the Option Panel.
 
-## Installation (WordPress backend)
+## Installation (WordPress Backend)
 
 1. Login to your WordPress website. When you're logged in, you will be in your "Dashboard". On the left-hand side, you will see a menu. In that menu, click on "Plugins".
 2. Click on "Add New" near the top of the screen. Type "Gutenberg Manager" in the search bar.
