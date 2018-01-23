@@ -17,7 +17,7 @@ If you are developing or editing a theme/plugin all features are also available 
 
 ## Installation (FTP)
 
-1. Download Gutenberg Manager zip file from Github or WordPress.org repository.
+1. Download Gutenberg Manager zip file from Github (Releases) or WordPress.org repository.
 2. "Unzip" the file you just downloaded and you will see a folder called "gutenberg-manager".
 3. Login to your hosting using your FTP account.
 4. Go to the folder /wp-content/plugins/ on your WP installation and upload the "gutenberg-manager" folder.
