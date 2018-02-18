@@ -68,7 +68,7 @@ function gm_admin_assets() {
 // Gutenberg Scripts
 add_action( 'enqueue_block_editor_assets', 'gm_gutenberg_default_blocks' );
 function gm_gutenberg_default_blocks() {
-    wp_enqueue_script( 'gm-gutenberg-default-blocks', GM_URL . 'inc/default-blocks.php', array( 'wp-blocks' ) );
+    wp_enqueue_script( 'gm-gutenberg-default-blocks', GM_URL . 'inc/default-blocks.php', array('wp-blocks', 'wp-element') );
 }
 
 // LANGUAGE

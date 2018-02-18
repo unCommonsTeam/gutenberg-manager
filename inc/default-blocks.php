@@ -25,7 +25,7 @@ $default_blocks = array(
     array( 'slug' => 'core/video', 'opt' => 'gm-block-video-disable', 'title' => 'Video', 'const' => 'GM_DISABLE_BLOCK_video' ),
     array( 'slug' => 'core/audio', 'opt' => 'gm-block-audio-disable', 'title' => 'Audio', 'const' => 'GM_DISABLE_BLOCK_audio' ),
     array( 'slug' => 'core/paragraph', 'opt' => 'gm-block-paragraph-disable', 'title' => 'Paragraph', 'const' => 'GM_DISABLE_BLOCK_paragraph' ),
-    array( 'slug' => 'core/block', 'opt' => 'gm-block-block-disable', 'title' => 'Reusable Block', 'const' => 'GM_DISABLE_BLOCK_reusable_block' ),
+    array( 'slug' => 'core/subhead', 'opt' => 'gm-block-subhead-disable', 'title' => 'Subhead', 'const' => 'GM_DISABLE_BLOCK_subhead' ),
     array( 'slug' => 'core/pullquote', 'opt' => 'gm-block-pullquote-disable', 'title' => 'Pullquote', 'const' => 'GM_DISABLE_BLOCK_pullquote' ),
     array( 'slug' => 'core/table', 'opt' => 'gm-block-table-disable', 'title' => 'Table', 'const' => 'GM_DISABLE_BLOCK_table' ),
     array( 'slug' => 'core/preformatted', 'opt' => 'gm-block-preformatted-disable', 'title' => 'Preformatted', 'const' => 'GM_DISABLE_BLOCK_preformatted' ),
@@ -73,11 +73,12 @@ $default_blocks = array(
     array( 'slug' => 'core-embed/ted', 'opt' => 'gm-block-ted-disable', 'title' => 'TED', 'const' => 'GM_DISABLE_BLOCK_ted' ),
     array( 'slug' => 'core-embed/tumblr', 'opt' => 'gm-block-tumblr-disable', 'title' => 'Tumblr', 'const' => 'GM_DISABLE_BLOCK_tumblr' ),
     array( 'slug' => 'core-embed/videopress', 'opt' => 'gm-block-videopress-disable', 'title' => 'VideoPress', 'const' => 'GM_DISABLE_BLOCK_videopress' ),
-    array( 'slug' => 'core-embed/vine', 'opt' => 'gm-block-vine-disable', 'title' => 'Vine', 'const' => 'GM_DISABLE_BLOCK_vine' ),
     array( 'slug' => 'core-embed/wordpress-tv', 'opt' => 'gm-block-wordpress-tv-disable', 'title' => 'WordPress.tv', 'const' => 'GM_DISABLE_BLOCK_wordpress_tv' ),
 
 );
 
+
+echo "window.onload = function() {";
 
 // Removal Loop
 foreach( $default_blocks as $block ){
@@ -96,3 +97,4 @@ foreach( $default_blocks as $block ){
 
 }
 
+echo "};";

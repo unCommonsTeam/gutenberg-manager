@@ -32,6 +32,14 @@ function gutenberg_manager_page(){ ?>
             $active_tab = 'settings';
         }
 
+        // Default Blocks Alert
+        if( $active_tab == 'default-blocks' ) {
+            echo '
+            <div class="notice notice-warning is-dismissible">
+                <p>' . esc_html__('Attention: if you disable a block that you have already used in a post/page you may get an editor issue.', 'gutenberg-manager') . '</p>
+            </div>';
+        }
+
         // Notices
         if( get_option('gm-global-disable') ){ ?>
 
@@ -57,7 +65,7 @@ function gutenberg_manager_page(){ ?>
                 array( 'slug' => 'core/video', 'name' => 'video', 'title' => 'Video' ),
                 array( 'slug' => 'core/audio', 'name' => 'audio', 'title' => 'Audio' ),
                 array( 'slug' => 'core/paragraph', 'name' => 'paragraph', 'title' => 'Paragraph' ),
-                array( 'slug' => 'core/block', 'name' => 'block', 'title' => 'Reusable Block' ),
+                array( 'slug' => 'core/subhead', 'name' => 'subhead', 'title' => 'Subhead' ),
             ),
 
             'Formatting' => array(
@@ -117,7 +125,6 @@ function gutenberg_manager_page(){ ?>
                 array( 'slug' => 'core-embed/ted', 'name' => 'ted', 'title' => 'TED' ),
                 array( 'slug' => 'core-embed/tumblr', 'name' => 'tumblr', 'title' => 'Tumblr' ),
                 array( 'slug' => 'core-embed/videopress', 'name' => 'videopress', 'title' => 'VideoPress' ),
-                array( 'slug' => 'core-embed/vine', 'name' => 'vine', 'title' => 'Vine' ),
                 array( 'slug' => 'core-embed/wordpress-tv', 'name' => 'wordpress-tv', 'title' => 'WordPress.tv' ),
             ),
 
@@ -535,7 +542,7 @@ array(
     'video' // Video
     'audio' // Audio
     'paragraph' // Paragraph
-    'reusable_block' // Reusable Block
+    'subhead' // Subhead
     'pullquote' // Pullquote
     'table' // Table
     'preformatted' // Preformatted
@@ -583,7 +590,6 @@ array(
     'ted' // TED
     'tumblr' // Tumblr
     'videopress' // VideoPress
-    'vine' // Vine
     'wordpress_tv' // WordPress.tv
 )
 
