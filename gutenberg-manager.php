@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Gutenberg Manager
-Plugin URI: https://wordpress.org/plugins/gutenberg-manager/
+Plugin URI: https://wordpress.org/plugins/manager-for-gutenberg/
 Description: A simple and easy way to manage Gutenberg editor. You can disable/enable it for every post types.
 Author: unCommons Team
 Author URI: http://www.uncommons.pro
@@ -81,7 +81,7 @@ function gm_language() {
 }
 
 // SETTINGS LINK
-add_filter( 'plugin_action_links_gutenberg-manager/gutenberg-manager.php', 'gm_settings_link' );
+add_filter( 'plugin_action_links_manager-for-gutenberg/gutenberg-manager.php', 'gm_settings_link' );
 
 function gm_settings_link( $links ) {
 

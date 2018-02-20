@@ -622,7 +622,7 @@ array(
                                 <img src="<?php echo GM_URL.'assets/images/github-icon.png'; ?>"> GitHub
                             </a>
                             <br><br>
-                            <a class="button button-secondary" href="https://wordpress.org/support/plugin/gutenberg-manager/" target="_blank">
+                            <a class="button button-secondary" href="https://wordpress.org/plugins/manager-for-gutenberg/" target="_blank">
                                 <img src="<?php echo GM_URL.'assets/images/wp-icon.png'; ?>"> Plugin's Page
                             </a>
                         </div>
@@ -669,7 +669,7 @@ array(
                     <h2>Contribute</h2>
                     <p>
                         <img src="<?php echo GM_URL.'assets/images/share-ideas-banner.jpg'; ?>">
-                        If you have some <b>idea</b> to improve the plugin <b>share it</b> with us using the support forum in <a href="https://wordpress.org/support/plugin/gutenberg-manager" target="_blank">WP.org</a> or <a href="https://github.com/unCommonsTeam/gutenberg-manager/issues" target="_blank">GitHub</a>
+                        If you have some <b>idea</b> to improve the plugin <b>share it</b> with us using the support forum in <a href="https://wordpress.org/plugins/manager-for-gutenberg" target="_blank">WP.org</a> or <a href="https://github.com/unCommonsTeam/gutenberg-manager/issues" target="_blank">GitHub</a>
                     </p>
 
                 </div>
@@ -679,8 +679,8 @@ array(
 
                     <h2>Rate Us</h2>
                     <p>
-                        <a href="https://wordpress.org/support/plugin/gutenberg-manager/reviews/" target="_blank"><img src="<?php echo GM_URL.'assets/images/rate-us-banner.jpg'; ?>"></a>
-                        Your  <a href="https://wordpress.org/support/plugin/gutenberg-manager/reviews/" target="_blank"><b>Rate</b></a> is really important for the future of plugin. But if you get a problem, <b>before</b> to give a bad rate, use <a href="https://github.com/unCommonsTeam/gutenberg-manager/issues" target="_blank">GitHub</a> or <a href="https://wordpress.org/support/plugin/gutenberg-manager" target="_blank">support forum</a> so we can help you to solve it!
+                        <a href="https://wordpress.org/plugins/manager-for-gutenberg/reviews/" target="_blank"><img src="<?php echo GM_URL.'assets/images/rate-us-banner.jpg'; ?>"></a>
+                        Your  <a href="https://wordpress.org/plugins/manager-for-gutenberg/reviews/" target="_blank"><b>Rate</b></a> is really important for the future of plugin. But if you get a problem, <b>before</b> to give a bad rate, use <a href="https://github.com/unCommonsTeam/gutenberg-manager/issues" target="_blank">GitHub</a> or <a href="https://wordpress.org/support/plugin/manager-for-gutenberg" target="_blank">support forum</a> so we can help you to solve it!
                     </p>
 
                 </div>
@@ -691,7 +691,7 @@ array(
                     <h2>Support Development</h2>
                     <p>
                         <a href="https://www.paypal.me/unCommonsTeam" target="_blank"><img src="<?php echo GM_URL.'assets/images/donate-banner.jpg'; ?>"></a>
-                        Your donations will be used to <b>support the development</b> of Gutenberg Manager.
+                        Your donations will be used to <a href="https://www.paypal.me/unCommonsTeam" target="_blank"><b>support the development</b></a> of Gutenberg Manager.
                     </p>
 
                 </div>
