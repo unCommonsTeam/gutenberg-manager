@@ -6,7 +6,7 @@ Here the steps to translate the plugin's strings in your language:
 
 1. Make sure you have set your WP installation in your language (Settings > General around the end of page)
 
-2. Duplicate the file .pot you have in this folder and rename it gutenberg-manager + the exact language code, for example gutenberg-manager-it_IT.po for Italian Language (please note .po and not .pot)
+2. Duplicate the file gutenberg-manager-en_US.po you have in this folder and rename it gutenberg-manager + the exact language code, for example gutenberg-manager-it_IT.po for Italian Language.
 (here a complete list of languages and their codes -> https://make.wordpress.org/polyglots/teams/)
 
 3. Now you only have to open gutenberg-manager-it_IT.po using the Poedit software
