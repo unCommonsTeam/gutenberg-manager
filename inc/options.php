@@ -18,8 +18,10 @@ function add_gutenberg_manager_menu(){
 }
 
 //Options Page
-function gutenberg_manager_page(){ ?>
+function gutenberg_manager_page(){ 
+    global $gm_default_blocks;
 
+    ?>
     <div class="wrap">
 
         <h2><?php esc_html_e('Gutenberg Manager', 'gutenberg-manager'); ?></h2>
@@ -53,82 +55,7 @@ function gutenberg_manager_page(){ ?>
         $post_types = get_post_types(array('public' => true, '_builtin' => false), 'object');
 
         // Default Blocks Array
-        $default_blocks = array(
-
-            'Common' => array(
-                array( 'slug' => 'core/image', 'name' => 'image', 'title' => 'Image' ),
-                array( 'slug' => 'core/gallery', 'name' => 'gallery', 'title' => 'Gallery' ),
-                array( 'slug' => 'core/heading', 'name' => 'heading', 'title' => 'Heading' ),
-                array( 'slug' => 'core/quote', 'name' => 'quote', 'title' => 'Quote' ),
-                array( 'slug' => 'core/list', 'name' => 'list', 'title' => 'List' ),
-                array( 'slug' => 'core/cover-image', 'name' => 'cover-image', 'title' => 'Cover Image' ),
-                array( 'slug' => 'core/video', 'name' => 'video', 'title' => 'Video' ),
-                array( 'slug' => 'core/audio', 'name' => 'audio', 'title' => 'Audio' ),
-                array( 'slug' => 'core/paragraph', 'name' => 'paragraph', 'title' => 'Paragraph' ),
-                array( 'slug' => 'core/subhead', 'name' => 'subhead', 'title' => 'Subhead' ),
-            ),
-
-            'Formatting' => array(
-                array( 'slug' => 'core/pullquote', 'name' => 'pullquote', 'title' => 'Pullquote' ),
-                array( 'slug' => 'core/table', 'name' => 'table', 'title' => 'Table' ),
-                array( 'slug' => 'core/preformatted', 'name' => 'preformatted', 'title' => 'Preformatted' ),
-                array( 'slug' => 'core/code', 'name' => 'code', 'title' => 'Code' ),
-                array( 'slug' => 'core/html', 'name' => 'html', 'title' => 'Custom HTML' ),
-                array( 'slug' => 'core/freeform', 'name' => 'freeform', 'title' => 'Classic Text' ),
-                array( 'slug' => 'core/verse', 'name' => 'verse', 'title' => 'Verse' ),
-            ),
-
-            'Layout' => array(
-                array( 'slug' => 'core/separator', 'name' => 'separator', 'title' => 'Separator' ),
-                array( 'slug' => 'core/more', 'name' => 'more', 'title' => 'More' ),
-                array( 'slug' => 'core/button', 'name' => 'button', 'title' => 'Button' ),
-                array( 'slug' => 'core/text-columns', 'name' => 'text-columns', 'title' => 'Text Columns' ),
-            ),
-
-            'Widgets' => array(
-                array( 'slug' => 'core/shortcode', 'name' => 'shortcode', 'title' => 'Shortcode' ),
-                array( 'slug' => 'core/latest-posts', 'name' => 'latest-posts', 'title' => 'Latest Posts' ),
-                array( 'slug' => 'core/categories', 'name' => 'categories', 'title' => 'Categories' ),
-            ),
-
-            'Embed' => array(
-                array( 'slug' => 'core/embed', 'name' => 'embed', 'title' => 'Embed' ),
-                array( 'slug' => 'core-embed/twitter', 'name' => 'twitter', 'title' => 'Twitter' ),
-                array( 'slug' => 'core-embed/youtube', 'name' => 'youtube', 'title' => 'YouTube' ),
-                array( 'slug' => 'core-embed/facebook', 'name' => 'facebook', 'title' => 'Facebook' ),
-                array( 'slug' => 'core-embed/instagram', 'name' => 'instagram', 'title' => 'Instagram' ),
-                array( 'slug' => 'core-embed/wordpress', 'name' => 'wordpress', 'title' => 'WordPress' ),
-                array( 'slug' => 'core-embed/soundcloud', 'name' => 'soundcloud', 'title' => 'SoundCloud' ),
-                array( 'slug' => 'core-embed/spotify', 'name' => 'spotify', 'title' => 'Spotify' ),
-                array( 'slug' => 'core-embed/flickr', 'name' => 'flickr', 'title' => 'Flickr' ),
-                array( 'slug' => 'core-embed/vimeo', 'name' => 'vimeo', 'title' => 'Vimeo' ),
-                array( 'slug' => 'core-embed/animoto', 'name' => 'animoto', 'title' => 'Animoto' ),
-                array( 'slug' => 'core-embed/cloudup', 'name' => 'cloudup', 'title' => 'Cloudup' ),
-                array( 'slug' => 'core-embed/collegehumor', 'name' => 'collegehumor', 'title' => 'CollegeHumor' ),
-                array( 'slug' => 'core-embed/dailymotion', 'name' => 'dailymotion', 'title' => 'Dailymotion' ),
-                array( 'slug' => 'core-embed/funnyordie', 'name' => 'funnyordie', 'title' => 'Funny or Die' ),
-                array( 'slug' => 'core-embed/hulu', 'name' => 'hulu', 'title' => 'Hulu' ),
-                array( 'slug' => 'core-embed/imgur', 'name' => 'imgur', 'title' => 'Imgur' ),
-                array( 'slug' => 'core-embed/issuu', 'name' => 'issuu', 'title' => 'Issuu' ),
-                array( 'slug' => 'core-embed/kickstarter', 'name' => 'kickstarter', 'title' => 'Kickstarter' ),
-                array( 'slug' => 'core-embed/meetup-com', 'name' => 'meetup-com', 'title' => 'Meetup.com' ),
-                array( 'slug' => 'core-embed/mixcloud', 'name' => 'mixcloud', 'title' => 'Mixcloud' ),
-                array( 'slug' => 'core-embed/photobucket', 'name' => 'photobucket', 'title' => 'Photobucket' ),
-                array( 'slug' => 'core-embed/polldaddy', 'name' => 'polldaddy', 'title' => 'Polldaddy' ),
-                array( 'slug' => 'core-embed/reddit', 'name' => 'reddit', 'title' => 'Reddit' ),
-                array( 'slug' => 'core-embed/reverbnation', 'name' => 'reverbnation', 'title' => 'ReverbNation' ),
-                array( 'slug' => 'core-embed/screencast', 'name' => 'screencast', 'title' => 'Screencast' ),
-                array( 'slug' => 'core-embed/scribd', 'name' => 'scribd', 'title' => 'Scribd' ),
-                array( 'slug' => 'core-embed/slideshare', 'name' => 'slideshare', 'title' => 'Slideshare' ),
-                array( 'slug' => 'core-embed/smugmug', 'name' => 'smugmug', 'title' => 'SmugMug' ),
-                array( 'slug' => 'core-embed/speaker', 'name' => 'speaker', 'title' => 'Speaker' ),
-                array( 'slug' => 'core-embed/ted', 'name' => 'ted', 'title' => 'TED' ),
-                array( 'slug' => 'core-embed/tumblr', 'name' => 'tumblr', 'title' => 'Tumblr' ),
-                array( 'slug' => 'core-embed/videopress', 'name' => 'videopress', 'title' => 'VideoPress' ),
-                array( 'slug' => 'core-embed/wordpress-tv', 'name' => 'wordpress-tv', 'title' => 'WordPress.tv' ),
-            ),
-
-        );
+        
 
         // Options names list
         $opt_names_list = '';
@@ -292,8 +219,9 @@ function gutenberg_manager_page(){ ?>
                     <?php if( $active_tab == 'default-blocks' ) { ?>
 
                         <?php
+                        
                         // Default Blocks Opt Names
-                        foreach( $default_blocks as $cat=>$blocks ){
+                        foreach( $gm_default_blocks as $cat=>$blocks ){
                             foreach( $blocks as $block ){
                                 $opt_names_list .= 'gm-block-'.$block['name'].'-disable,';
                             }
@@ -304,7 +232,7 @@ function gutenberg_manager_page(){ ?>
                             <p><?php esc_html_e('Here you can disable the default blocks in the Editor.', 'gutenberg-manager'); ?></p>
                         </div>
 
-                        <?php foreach( $default_blocks as $cat=>$blocks ) { ?>
+                        <?php foreach( $gm_default_blocks as $cat=>$blocks ) { ?>
 
                             <?php
                             // Icons
@@ -531,66 +459,14 @@ function your_default_blocks_managing(){
                                 <h4><?php esc_html_e('Blocks names', 'gutenberg-manager'); ?></h4>
 
 <pre class="language-php"><code class="language-php">
-
 array(
-    'image' // Image
-    'gallery' // Gallery
-    'heading' // Heading
-    'quote' // Quote
-    'list' // List
-    'cover_image' // Cover Image
-    'video' // Video
-    'audio' // Audio
-    'paragraph' // Paragraph
-    'subhead' // Subhead
-    'pullquote' // Pullquote
-    'table' // Table
-    'preformatted' // Preformatted
-    'code' // Code
-    'custom_html' // Custom HTML
-    'classic_text' // Classic Text
-    'verse' // Verse
-    'separator' // Separator
-    'more' // More
-    'button' // Button
-    'text_columns' // Text Columns
-    'shortcode' // Shortcode
-    'latest_posts' // Latest Posts
-    'categories' // Categories
-    'embed' // Embed
-    'twitter' // Twitter
-    'youtube' // YouTube
-    'facebook' // Facebook
-    'instagram' // Instagram
-    'wordpress' // WordPress
-    'soundcloud' // SoundCloud
-    'spotify' // Spotify
-    'flickr' // Flickr
-    'vimeo' // Vimeo
-    'animoto' // Animoto
-    'cloudup' // Cloudup
-    'collegehumor' // CollegeHumor
-    'dailymotion' // Dailymotion
-    'funny_or_die' // Funny or Die
-    'hulu' // Hulu
-    'imgur' // Imgur
-    'issuu' // Issuu
-    'kickstarter' // Kickstarter
-    'meetup' // Meetup.com
-    'mixcloud' // Mixcloud
-    'photobucket' // Photobucket
-    'polldaddy' // Polldaddy
-    'reddit' // Reddit
-    'reverbnation' // ReverbNation
-    'screencast' // Screencast
-    'scribd' // Scribd
-    'slideshare' // Slideshare
-    'smugmug' // SmugMug
-    'speaker' // Speaker
-    'ted' // TED
-    'tumblr' // Tumblr
-    'videopress' // VideoPress
-    'wordpress_tv' // WordPress.tv
+<?php 
+        foreach( $gm_default_blocks as $cat=>$blocks ){
+            foreach( $blocks as $block ){
+                echo "    '" . $block['name'] . "', //" . $block['title'] . "\n";
+            }
+        }
+?>
 )
 
 </code></pre>
