@@ -36,6 +36,9 @@ function gm_check_gutenberg() {
 define( 'GM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GM_URL', plugin_dir_url( __FILE__ ) );
 
+// DEFAULT BLOCK DEFINTIONS
+require_once( GM_DIR.'inc/blocks.php' );
+
 // API/HOOKS
 require_once( GM_DIR.'inc/hooks.php' );
 
