@@ -13,7 +13,7 @@ add_action('admin_menu', 'add_gutenberg_manager_menu', 105);
 
 function add_gutenberg_manager_menu(){
 
-    add_submenu_page('gutenberg', 'Gutenberg Manager', 'Gutenberg Manager', 'manage_options', 'gutenberg-manager', 'gutenberg_manager_page');
+    add_submenu_page('options-general.php', 'Gutenberg Manager', 'Gutenberg Manager', 'manage_options', 'gutenberg-manager', 'gutenberg_manager_page');
 
 }
 
@@ -41,7 +41,7 @@ function gutenberg_manager_page(){ ?>
         }
 
         // Notices
-        if( get_option('gm-global-disable') ){ ?>
+        if( get_option('gm-global-disable') && !is_plugin_active('classic-editor/classic-editor.php') ){ ?>
 
             <div class="notice notice-warning is-dismissible">
                 <p><?php esc_html_e('Warning: Gutenberg Editor is globally disabled.', 'gutenberg-manager'); ?></p>
@@ -61,11 +61,11 @@ function gutenberg_manager_page(){ ?>
                 array( 'slug' => 'core/heading', 'name' => 'heading', 'title' => 'Heading' ),
                 array( 'slug' => 'core/quote', 'name' => 'quote', 'title' => 'Quote' ),
                 array( 'slug' => 'core/list', 'name' => 'list', 'title' => 'List' ),
-                array( 'slug' => 'core/cover-image', 'name' => 'cover-image', 'title' => 'Cover Image' ),
+                array( 'slug' => 'core/cover', 'name' => 'cover', 'title' => 'Cover' ),
                 array( 'slug' => 'core/video', 'name' => 'video', 'title' => 'Video' ),
                 array( 'slug' => 'core/audio', 'name' => 'audio', 'title' => 'Audio' ),
                 array( 'slug' => 'core/paragraph', 'name' => 'paragraph', 'title' => 'Paragraph' ),
-                array( 'slug' => 'core/subhead', 'name' => 'subhead', 'title' => 'Subhead' ),
+                array( 'slug' => 'core/file', 'name' => 'file', 'title' => 'File' ),
             ),
 
             'Formatting' => array(
@@ -74,21 +74,26 @@ function gutenberg_manager_page(){ ?>
                 array( 'slug' => 'core/preformatted', 'name' => 'preformatted', 'title' => 'Preformatted' ),
                 array( 'slug' => 'core/code', 'name' => 'code', 'title' => 'Code' ),
                 array( 'slug' => 'core/html', 'name' => 'html', 'title' => 'Custom HTML' ),
-                array( 'slug' => 'core/freeform', 'name' => 'freeform', 'title' => 'Classic Text' ),
+                array( 'slug' => 'core/freeform', 'name' => 'freeform', 'title' => 'Classic' ),
                 array( 'slug' => 'core/verse', 'name' => 'verse', 'title' => 'Verse' ),
             ),
 
             'Layout' => array(
+                array( 'slug' => 'core/media-text', 'name' => 'media-text', 'title' => 'Media & Text' ),
                 array( 'slug' => 'core/separator', 'name' => 'separator', 'title' => 'Separator' ),
                 array( 'slug' => 'core/more', 'name' => 'more', 'title' => 'More' ),
                 array( 'slug' => 'core/button', 'name' => 'button', 'title' => 'Button' ),
-                array( 'slug' => 'core/text-columns', 'name' => 'text-columns', 'title' => 'Text Columns' ),
+                array( 'slug' => 'core/columns', 'name' => 'columns', 'title' => 'Columns' ),
+                array( 'slug' => 'core/nextpage', 'name' => 'nextpage', 'title' => 'Page Break' ),
+                array( 'slug' => 'core/spacer', 'name' => 'spacer', 'title' => 'Spacer' ),
             ),
 
             'Widgets' => array(
                 array( 'slug' => 'core/shortcode', 'name' => 'shortcode', 'title' => 'Shortcode' ),
                 array( 'slug' => 'core/latest-posts', 'name' => 'latest-posts', 'title' => 'Latest Posts' ),
+                array( 'slug' => 'core/latest-comments', 'name' => 'latest-comments', 'title' => 'Latest Comments' ),
                 array( 'slug' => 'core/categories', 'name' => 'categories', 'title' => 'Categories' ),
+                array( 'slug' => 'core/archives', 'name' => 'archives', 'title' => 'Archives' ),
             ),
 
             'Embed' => array(
@@ -121,7 +126,7 @@ function gutenberg_manager_page(){ ?>
                 array( 'slug' => 'core-embed/scribd', 'name' => 'scribd', 'title' => 'Scribd' ),
                 array( 'slug' => 'core-embed/slideshare', 'name' => 'slideshare', 'title' => 'Slideshare' ),
                 array( 'slug' => 'core-embed/smugmug', 'name' => 'smugmug', 'title' => 'SmugMug' ),
-                array( 'slug' => 'core-embed/speaker', 'name' => 'speaker', 'title' => 'Speaker' ),
+                array( 'slug' => 'core-embed/speaker-deck', 'name' => 'speaker-deck', 'title' => 'Speaker Deck' ),
                 array( 'slug' => 'core-embed/ted', 'name' => 'ted', 'title' => 'TED' ),
                 array( 'slug' => 'core-embed/tumblr', 'name' => 'tumblr', 'title' => 'Tumblr' ),
                 array( 'slug' => 'core-embed/videopress', 'name' => 'videopress', 'title' => 'VideoPress' ),
@@ -260,24 +265,41 @@ function gutenberg_manager_page(){ ?>
                                 <table class="form-table">
                             <tbody>
                             <?php
-                            // Post Types Loop
-                            foreach( $post_types as $name=>$obj){ ?>
+                            if( $post_types ) {
+                                // Post Types Loop
+                                foreach ($post_types as $name => $obj) { ?>
 
-                                <tr>
-                                    <th scope="row"><?php echo $obj->label; ?></th>
-                                    <td>
-                                        <label>
-                                            <input type="checkbox" name="gm-<?php echo $name; ?>-disable" value="1" <?php if( get_option('gm-'.$name.'-disable') ){ echo 'checked'; } ?>>
-                                            <?php esc_html_e('Disable', 'gutenberg-manager'); ?>
-                                        </label>
-                                        <br>
-                                        <p class="description indicator-hint">
-                                            <?php esc_html_e('Disable the editor on ', 'gutenberg-manager'); echo $obj->label; ?>
-                                        </p>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row"><?php echo $obj->label; ?></th>
+                                        <td>
+                                            <label>
+                                                <input type="checkbox" name="gm-<?php echo $name; ?>-disable"
+                                                       value="1" <?php if (get_option('gm-' . $name . '-disable')) {
+                                                    echo 'checked';
+                                                } ?>>
+                                                <?php esc_html_e('Disable', 'gutenberg-manager'); ?>
+                                            </label>
+                                            <br>
 
-                            <?php } ?>
+                                            <p class="description indicator-hint">
+                                                <?php esc_html_e('Disable the editor on ', 'gutenberg-manager');
+                                                echo $obj->label; ?>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                <?php } // End Loop
+
+                            }else{
+
+                                ?>
+
+                                <tr><td><?php esc_html_e('No additional Post Types are available', 'gutenberg-manager'); ?></td></tr>
+
+                                <?php
+
+                            }
+                            ?>
 
                             </tbody>
                         </table>
@@ -330,11 +352,11 @@ function gutenberg_manager_page(){ ?>
 
                             <div class="gm-container">
 
-                                <h3><span class="<?php echo $cat_icon; ?>"></span> <?php echo $cat; ?></h3>
+                                <h3><span class="<?php echo $cat_icon; ?>"></span> <?php echo $cat; ?>  <span style="float: right; font-size: 14px;"><input id="select-<?php echo $cat; ?>" type="checkbox" name="select-<?php echo $cat; ?>" value="1"> Select/Deselect All </span></h3>
 
                                 <div class="gm-container-content">
 
-                                    <table class="form-table">
+                                    <table class="form-table <?php echo $cat; ?>">
                                         <tbody>
 
                                         <tr>
@@ -531,66 +553,79 @@ function your_default_blocks_managing(){
                                 <h4><?php esc_html_e('Blocks names', 'gutenberg-manager'); ?></h4>
 
 <pre class="language-php"><code class="language-php">
-
 array(
-    'image' // Image
-    'gallery' // Gallery
-    'heading' // Heading
-    'quote' // Quote
-    'list' // List
-    'cover_image' // Cover Image
-    'video' // Video
-    'audio' // Audio
-    'paragraph' // Paragraph
-    'subhead' // Subhead
-    'pullquote' // Pullquote
-    'table' // Table
-    'preformatted' // Preformatted
-    'code' // Code
-    'custom_html' // Custom HTML
-    'classic_text' // Classic Text
-    'verse' // Verse
-    'separator' // Separator
-    'more' // More
-    'button' // Button
-    'text_columns' // Text Columns
-    'shortcode' // Shortcode
-    'latest_posts' // Latest Posts
-    'categories' // Categories
-    'embed' // Embed
-    'twitter' // Twitter
-    'youtube' // YouTube
-    'facebook' // Facebook
-    'instagram' // Instagram
-    'wordpress' // WordPress
-    'soundcloud' // SoundCloud
-    'spotify' // Spotify
-    'flickr' // Flickr
-    'vimeo' // Vimeo
-    'animoto' // Animoto
-    'cloudup' // Cloudup
-    'collegehumor' // CollegeHumor
-    'dailymotion' // Dailymotion
-    'funny_or_die' // Funny or Die
-    'hulu' // Hulu
-    'imgur' // Imgur
-    'issuu' // Issuu
-    'kickstarter' // Kickstarter
-    'meetup' // Meetup.com
-    'mixcloud' // Mixcloud
-    'photobucket' // Photobucket
-    'polldaddy' // Polldaddy
-    'reddit' // Reddit
-    'reverbnation' // ReverbNation
-    'screencast' // Screencast
-    'scribd' // Scribd
-    'slideshare' // Slideshare
-    'smugmug' // SmugMug
-    'speaker' // Speaker
-    'ted' // TED
-    'tumblr' // Tumblr
-    'videopress' // VideoPress
-    'wordpress_tv' // WordPress.tv
+    //Common Blocks
+    'image', // Image
+    'gallery', // Gallery
+    'heading', // Heading
+    'quote', // Quote
+    'list', // List
+    'cover', // Cover
+    'video', // Video
+    'audio', // Audio
+    'paragraph', // Paragraph
+    'file', // File
+
+    // Formatting
+    'pullquote', // Pullquote
+    'table', // Table
+    'preformatted', // Preformatted
+    'code', // Code
+    'custom_html', // Custom HTML
+    'classic_text', // Classic
+    'verse', // Verse
+
+    // Layouts Elements
+    'media_text', // Media & Text
+    'separator', // Separator
+    'more', // More
+    'button', // Button
+    'columns', // Columns
+    'nextpage', // Page Break
+    'spacer', // Spacer
+
+    // Widgets
+    'shortcode', // Shortcode
+    'latest_posts', // Latest Posts
+    'latest_comments', // Latest Comments
+    'categories', // Categories
+    'archives', // Archives
+
+    // Embeds
+    'embed', // Embed
+    'twitter', // Twitter
+    'youtube', // YouTube
+    'facebook', // Facebook
+    'instagram', // Instagram
+    'wordpress', // WordPress
+    'soundcloud', // SoundCloud
+    'spotify', // Spotify
+    'flickr', // Flickr
+    'vimeo', // Vimeo
+    'animoto', // Animoto
+    'cloudup', // Cloudup
+    'collegehumor', // CollegeHumor
+    'dailymotion', // Dailymotion
+    'funny_or_die', // Funny or Die
+    'hulu', // Hulu
+    'imgur', // Imgur
+    'issuu', // Issuu
+    'kickstarter', // Kickstarter
+    'meetup', // Meetup.com
+    'mixcloud', // Mixcloud
+    'photobucket', // Photobucket
+    'polldaddy', // Polldaddy
+    'reddit', // Reddit
+    'reverbnation', // ReverbNation
+    'screencast', // Screencast
+    'scribd', // Scribd
+    'slideshare', // Slideshare
+    'smugmug', // SmugMug
+    'speaker_deck', // Speaker Deck
+    'ted', // TED
+    'tumblr', // Tumblr
+    'videopress', // VideoPress
+    'wordpress_tv', // WordPress.tv
 )
 
 </code></pre>

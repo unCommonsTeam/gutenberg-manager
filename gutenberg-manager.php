@@ -2,12 +2,17 @@
 /*
 Plugin Name: Gutenberg Manager
 Plugin URI: https://wordpress.org/plugins/manager-for-gutenberg/
-Description: A simple and easy way to manage Gutenberg editor. You can disable/enable it for every post types.
+Description: A simple and easy way to manage Gutenberg editor. You can disable/enable it for every post types and restore the Classic Editor. You can remove/add single blocks and more.
 Author: unCommons Team
 Author URI: http://www.uncommons.pro
-Version: 1.0
+Requires at least: 4.9
+Tested up to: 5.0.3
+Stable tag: 1.5
+Version: 1.5
+Requires PHP: 5.3
 Text Domain: gutenberg-manager
-License: GPLv2
+Domain Path: /languages
+License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -21,11 +26,11 @@ function gm_check_gutenberg() {
 
     global $pagenow;
 
-    if ( !function_exists('gutenberg_init') && $pagenow == 'plugins.php' ) {
+    if ( is_plugin_active('classic-editor/classic-editor.php') ) {
 
         echo '
-        <div class="notice notice-error is-dismissible">
-            <p>' . esc_html__('Error: Gutenberg Editor seems not to exist! Gutenberg Manager Plugin is only working with Gutenberg Editor.', 'gutenberg-manager') . '</p>
+        <div class="notice notice-warning is-dismissible">
+            <p>' . esc_html__('Gutenberg Manager Warning: "Classic Editor" plugin is enabled, but you don\'t need it if you are using Gutenberg Manager. However our disabling options will be inhibited to allow "Classic Editor" to work properly (we always respect the other plugins).', 'gutenberg-manager') . '</p>
         </div>';
 
     }
@@ -45,9 +50,10 @@ require_once( GM_DIR.'inc/options.php' );
 // CORE
 require_once( GM_DIR.'inc/core.php' );
 
-// ASSETS
+// DEFAULT BLOCKS MANAGING
+require_once( GM_DIR.'inc/default-blocks.php' );
 
-// Plugin Assets
+// ASSETS
 add_action( 'admin_enqueue_scripts', 'gm_admin_assets' );
 function gm_admin_assets() {
 
@@ -65,18 +71,12 @@ function gm_admin_assets() {
 
 }
 
-// Gutenberg Scripts
-add_action( 'enqueue_block_editor_assets', 'gm_gutenberg_default_blocks' );
-function gm_gutenberg_default_blocks() {
-    wp_enqueue_script( 'gm-gutenberg-default-blocks', GM_URL . 'inc/default-blocks.php', array('wp-blocks', 'wp-element') );
-}
-
 // LANGUAGE
 add_action('plugins_loaded', 'gm_language');
 
 function gm_language() {
 
-    load_plugin_textdomain( 'gutenberg-manager', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'gutenberg-manager', false, GM_DIR . 'languages/' );
 
 }
 
@@ -85,7 +85,7 @@ add_filter( 'plugin_action_links_manager-for-gutenberg/gutenberg-manager.php', '
 
 function gm_settings_link( $links ) {
 
-    $settings_link = '<a href="admin.php?page=gutenberg-manager">' . esc_html__( 'Settings', 'gutenberg-manager' ) . '</a>';
+    $settings_link = '<a href="options-general.php?page=gutenberg-manager">' . esc_html__( 'Settings', 'gutenberg-manager' ) . '</a>';
 
     array_push( $links, $settings_link );
 

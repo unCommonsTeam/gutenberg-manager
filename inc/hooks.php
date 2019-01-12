@@ -9,15 +9,21 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 // HOOKS (AFTER SETUP THEME)
-add_action( 'after_setup_theme', 'gm_hooks' );
+add_action( 'admin_menu', 'gm_hooks_1' );
 
-function gm_hooks() {
+function gm_hooks_1() {
 
     // GLOBAL HOOK
     do_action( 'gm_global' );
 
     // POST TYPES
     do_action( 'gm_post_types' );
+
+}
+
+add_action( 'after_setup_theme', 'gm_hooks_2' );
+
+function gm_hooks_2() {
 
     // DEFAULT BLOCKS
     do_action( 'gm_default_blocks' );
@@ -30,7 +36,7 @@ function gm_hooks() {
 function gm_set_hidden( $value = false ) {
 
     if( $value ) {
-        add_action( 'admin_menu', function(){ remove_submenu_page( 'gutenberg', 'gutenberg-manager' ); }, 105 );
+        add_action( 'admin_menu', function(){ remove_submenu_page( 'options-general.php', 'gutenberg-manager' ); }, 105 );
 
         $all_wp_options = wp_load_alloptions();
 
@@ -70,8 +76,8 @@ function gm_disable_post_type( $types ) {
 
 }
 
-// Disable Default Block
-function gm_disable_block( $blocks = array() ) {
+// Disable Default Blocks
+function gm_disable_blocks( $blocks = array() ) {
 
     foreach ( $blocks as $name ) {
 

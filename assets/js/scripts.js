@@ -21,6 +21,51 @@ jQuery(function($) {
             $warn.val('0');
         });
 
+        // Select/Deselect all Common Blocks
+        $('#select-Common').change(function() {
+            if(this.checked) {
+                $('.form-table.Common input[type=checkbox]').prop("checked", true);
+            }else{
+                $('.form-table.Common input[type=checkbox]').prop("checked", false);
+            }
+        });
+
+        // Select/Deselect all Formatting Blocks
+        $('#select-Formatting').change(function() {
+            if(this.checked) {
+                $('.form-table.Formatting input[type=checkbox]').prop("checked", true);
+            }else{
+                $('.form-table.Formatting input[type=checkbox]').prop("checked", false);
+            }
+        });
+
+        // Select/Deselect all Layout Blocks
+        $('#select-Layout').change(function() {
+            if(this.checked) {
+                $('.form-table.Layout input[type=checkbox]').prop("checked", true);
+            }else{
+                $('.form-table.Layout input[type=checkbox]').prop("checked", false);
+            }
+        });
+
+        // Select/Deselect all Widgets Blocks
+        $('#select-Widgets').change(function() {
+            if(this.checked) {
+                $('.form-table.Widgets input[type=checkbox]').prop("checked", true);
+            }else{
+                $('.form-table.Widgets input[type=checkbox]').prop("checked", false);
+            }
+        });
+
+        // Select/Deselect all Embed Blocks
+        $('#select-Embed').change(function() {
+            if(this.checked) {
+                $('.form-table.Embed input[type=checkbox]').prop("checked", true);
+            }else{
+                $('.form-table.Embed input[type=checkbox]').prop("checked", false);
+            }
+        });
+
     });
 
     window.onbeforeunload = function () {
